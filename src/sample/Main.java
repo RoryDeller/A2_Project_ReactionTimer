@@ -53,13 +53,14 @@ public class Main extends Application {
         BorderPane.setAlignment(topPane, Pos.TOP_CENTER);
 
         HBox bottomPane = new HBox(20);
-        Label Author = new Label("By Rory Deller");
+        Label Author = new Label("Developed by Rory Deller");
+        Author.setAlignment(Pos.BOTTOM_LEFT);
         Author.setFont(new Font("Arial", 25));
         bottomPane.getChildren().add(Author);
         Button bottomButton2 = new Button("Quit");
+        bottomButton2.setAlignment(Pos.BOTTOM_RIGHT);
         bottomPane.getChildren().add(bottomButton2);
         root.setBottom(bottomPane);
-        bottomPane.setAlignment(Pos.BOTTOM_LEFT);
         BorderPane.setAlignment(bottomPane, Pos.BOTTOM_CENTER);
 
         VBox centerPane = new VBox(3);
