@@ -2,12 +2,9 @@ package sample;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -67,6 +63,7 @@ public class Main extends Application {
         HBox quitSubPane = new HBox(20);
         Button rightButton2 = new Button("Settings");
         rightButton2.setOnAction((ActionEvent ae) -> doSomething(ae));
+
         rightButton2.setPadding(new Insets(20));
         quitSubPane.getChildren().add(rightButton2);
 
@@ -74,7 +71,8 @@ public class Main extends Application {
         HBox.setHgrow(quitSubPane, Priority.ALWAYS);
         quitSubPane.setAlignment(Pos.CENTER_RIGHT);
         Button bottomButton2 = new Button("Quit");
-        
+        bottomButton2.setOnAction((ActionEvent ae) -> terminate());
+
         bottomButton2.setPadding(new Insets(20));
         quitSubPane.getChildren().add(bottomButton2);
         quitSubPane.setAlignment(Pos.BOTTOM_RIGHT);
@@ -89,14 +87,16 @@ public class Main extends Application {
 
         VBox centerPane = new VBox(3);
         Button enterMusic = new Button("Musical Mode");
+        enterMusic.setOnAction((ActionEvent ae) -> doSomething(ae));
         centerPane.setStyle("-fx-background-color: green");
         centerPane.getChildren().add(enterMusic);
         centerPane.setPrefWidth(50);
 
-        ImageView iv1 = new ImageView(new Image("Sample.gif"));
+        ImageView iv1 = new ImageView(new Image("sample/Sample.gif"));
         centerPane.getChildren().add(iv1);
 
         Button centerButton3 = new Button("Statistics");
+        centerButton3.setOnAction((ActionEvent ae) -> doSomething(ae));
         centerPane.getChildren().add(centerButton3);
         root.setCenter(centerPane);
         centerPane.setAlignment(Pos.CENTER);
@@ -105,16 +105,13 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 1024, 768);
 
-        stage.setTitle("Hello World");
-        stage.setScene(scene);
-        stage.show();
-
         stage.setTitle("Full screen canvas");
         stage.setResizable(true);
         stage.setFullScreen(true);
         stage.setWidth(1280);
         stage.setHeight(1024);
         stage.setScene(scene);
+
         stage.show();
 
     }
@@ -132,8 +129,14 @@ public class Main extends Application {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("Wow, you clicked the button with style!");
+        alert.setContentText("Placeholder code, this feature has not been implemented yet.");
         alert.showAndWait();
     }
 
+    private static void terminate()
+    {
+        System.exit(0);
+    }
+
 }
+
