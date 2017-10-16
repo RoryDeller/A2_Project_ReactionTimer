@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -28,6 +30,7 @@ public class Main extends Application {
 
         HBox leftPane = new HBox(20);
         Button leftButton1 = new Button("Reaction Tester");
+        leftButton1.setOnAction((ActionEvent ae) -> doSomething(ae));
         leftPane.getChildren().add(leftButton1);
         root.setLeft(leftPane);
         leftPane.setAlignment(Pos.CENTER_RIGHT);
@@ -37,6 +40,7 @@ public class Main extends Application {
 
         VBox rightPane = new VBox(20);
         Button rightButton1 = new Button("Reaction Timer");
+        rightButton1.setOnAction((ActionEvent ae) -> doSomething(ae));
         rightPane.getChildren().add(rightButton1);
         rightPane.setStyle("-fx-background-color: aqua");
         //BorderPane.setAlignment(rightPane, Pos.CENTER_RIGHT);
@@ -62,6 +66,7 @@ public class Main extends Application {
 
         HBox quitSubPane = new HBox(20);
         Button rightButton2 = new Button("Settings");
+        rightButton2.setOnAction((ActionEvent ae) -> doSomething(ae));
         rightButton2.setPadding(new Insets(20));
         quitSubPane.getChildren().add(rightButton2);
 
@@ -69,6 +74,7 @@ public class Main extends Application {
         HBox.setHgrow(quitSubPane, Priority.ALWAYS);
         quitSubPane.setAlignment(Pos.CENTER_RIGHT);
         Button bottomButton2 = new Button("Quit");
+        
         bottomButton2.setPadding(new Insets(20));
         quitSubPane.getChildren().add(bottomButton2);
         quitSubPane.setAlignment(Pos.BOTTOM_RIGHT);
@@ -111,15 +117,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        Canvas canvas = new Canvas();
-        canvas.setWidth(1280);
-        canvas.setHeight(1024);
-        root.getChildren().add(canvas);
-
-        gc = canvas.getGraphicsContext2D();
-
-
-
     }
 
     public static GraphicsContext gc;
@@ -130,4 +127,13 @@ public class Main extends Application {
 
 
     }
+
+    public static void doSomething(ActionEvent ae) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Wow, you clicked the button with style!");
+        alert.showAndWait();
+    }
+
 }
