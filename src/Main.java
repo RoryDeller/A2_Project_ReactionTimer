@@ -1,11 +1,8 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,12 +14,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static Stage masterStage;
+
     @Override
     public void start(Stage stage) throws Exception {
 
+        masterStage = stage;
 
         BorderPane root = new BorderPane();
-
 
         HBox leftPane = new HBox(20);
         Button leftButton1 = new Button("Reaction Tester");
@@ -92,7 +91,7 @@ public class Main extends Application {
         centerPane.getChildren().add(enterMusic);
         centerPane.setPrefWidth(50);
 
-        ImageView iv1 = new ImageView(new Image("sample/Sample.gif"));
+        ImageView iv1 = new ImageView(new Image("Sample.gif"));
         centerPane.getChildren().add(iv1);
 
         Button centerButton3 = new Button("Statistics");
@@ -116,7 +115,7 @@ public class Main extends Application {
 
     }
 
-    public static GraphicsContext gc;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -131,6 +130,9 @@ public class Main extends Application {
         alert.setHeaderText(null);
         alert.setContentText("Placeholder code, this feature has not been implemented yet.");
         alert.showAndWait();
+
+        ReactionTester.ReactionTesterScene(masterStage);
+
     }
 
     private static void terminate()
