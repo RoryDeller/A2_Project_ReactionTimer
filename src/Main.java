@@ -25,7 +25,7 @@ public class Main extends Application {
 
         HBox leftPane = new HBox(20);
         Button leftButton1 = new Button("Reaction Tester");
-        leftButton1.setOnAction((ActionEvent ae) -> doSomething(ae));
+        leftButton1.setOnAction((ActionEvent ae) -> toReactionTester(ae));
         leftPane.getChildren().add(leftButton1);
         root.setLeft(leftPane);
         leftPane.setAlignment(Pos.CENTER_RIGHT);
@@ -131,6 +131,11 @@ public class Main extends Application {
         alert.setContentText("Placeholder code, this feature has not been implemented yet.");
         alert.showAndWait();
 
+
+
+    }
+
+    public static void toReactionTester(ActionEvent ae){
         ReactionTester.ReactionTesterScene(masterStage);
 
     }
