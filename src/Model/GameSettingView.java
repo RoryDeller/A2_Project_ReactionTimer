@@ -8,12 +8,12 @@ public class GameSettingView {
 
     private final SimpleIntegerProperty optionID;
     private final SimpleStringProperty option;
-    private final SimpleStringProperty catagory;
+    private final SimpleStringProperty category;
 
-    public Option(int optionID, String option, String catagory){
+    public Option(int optionID, String option, String category){
         this.optionID = new SimpleIntegerProperty(optionID);
         this.option = new SimpleStringProperty(option);
-        this.catagory = new SimpleStringProperty(catagory);
+        this.category = new SimpleStringProperty(category);
     }
 
     public int getOptionID() { return optionID.get(); }
@@ -22,6 +22,6 @@ public class GameSettingView {
     public String getOption() { return option.get(); }
     public void setOption(String option) { this.option.set(option); }
 
-    public String getCatagory() { return catagory.get(); }
-    public void setCatagory(String catagory) { this.catagory.set(catagory); }
+    public String getCategory() { return category.get(); }
+    public void setCategory(String category) { this.category.set(category); }
 }
