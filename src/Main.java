@@ -102,7 +102,7 @@ public class Main extends Application {
         BorderPane.setAlignment(centerPane, Pos.CENTER);
 
 
-        Scene scene = new Scene(root, 1024, 768);
+        Scene scene = new Scene(root);
 
         stage.setTitle("Full screen canvas");
         stage.setResizable(true);
@@ -136,7 +136,9 @@ public class Main extends Application {
     }
 
     public static void toReactionTester(ActionEvent ae){
-        ReactionTester.ReactionTesterScene(masterStage);
+        ReactionTester rt = new ReactionTester(masterStage);
+
+
 
     }
 

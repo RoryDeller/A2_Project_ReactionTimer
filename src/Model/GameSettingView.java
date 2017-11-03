@@ -10,7 +10,7 @@ public class GameSettingView {
     private final SimpleStringProperty option;
     private final SimpleStringProperty category;
 
-    public Option(int optionID, String option, String category){
+    public GameSettingView(int optionID, String option, String category){
         this.optionID = new SimpleIntegerProperty(optionID);
         this.option = new SimpleStringProperty(option);
         this.category = new SimpleStringProperty(category);
