@@ -25,4 +25,10 @@ public class Album {
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
+
+    @Override
+    public String toString(){
+        return this.albumName + " " + this.albumID;
+    }
+
 }

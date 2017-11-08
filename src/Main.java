@@ -1,3 +1,6 @@
+import Model.Album;
+import Model.AlbumService;
+import Model.DatabaseConnection;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -12,9 +15,12 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     private static Stage masterStage;
+    public static DatabaseConnection database;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -118,7 +124,15 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
         launch(args);
+
+        /*database = new DatabaseConnection("ReactionTesterDatabase.db");
+        ArrayList<Album> testList = new ArrayList<>();
+        AlbumService.selectAll(testList, database);
+        for (Album c: testList){
+            System.out.println(c);
+        } This is code for testing the database connection between it and the JDK program */
 
 
 
