@@ -79,7 +79,7 @@ public class AlbumService {
     } //Insert and Update
     public static void deleteByID(int id, DatabaseConnection database){
 
-        PreparedStatement statement = database.newStatement("DELETE FROM Album WHERE albumID = ?");
+        PreparedStatement statement = database.newStatement("DELETE FROM Albums WHERE albumID = ?");
 
         try {
             if (statement != null) {

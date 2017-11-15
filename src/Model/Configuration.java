@@ -4,12 +4,12 @@ public class Configuration {
 
     private int configurationID;
     private int optionID;
-    private String configuration;
+    private String configurationType;
 
     public Configuration(int configurationID, int optionID, String configuration) {
         this.configurationID = configurationID;
         this.optionID = optionID;
-        this.configuration = configuration;
+        this.configurationType = configuration;
     }
 
 
@@ -29,11 +29,11 @@ public class Configuration {
         this.optionID = optionID;
     }
 
-    public String getConfiguration() {
-        return configuration;
+    public String getConfigurationType() {
+        return configurationType;
     }
 
-    public void setConfiguration(String configuration) {
-        this.configuration = configuration;
+    public void setConfigurationType(String configurationType) {
+        this.configurationType = configurationType;
     }
 }

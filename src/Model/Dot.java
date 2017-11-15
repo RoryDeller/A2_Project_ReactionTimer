@@ -3,9 +3,9 @@ package Model;
 public class Dot {
     private int dotID;
     private int dotOrder;
-    private String ShapeID;
+    private int ShapeID;
 
-    public Dot(int dotID, int dotOrder, String shapeID) {
+    public Dot(int dotID, int dotOrder, int shapeID) {
         this.dotID = dotID;
         this.dotOrder = dotOrder;
         ShapeID = shapeID;
@@ -27,11 +27,11 @@ public class Dot {
         this.dotOrder = dotOrder;
     }
 
-    public String getShapeID() {
+    public int getShapeID() {
         return ShapeID;
     }
 
-    public void setShapeID(String shapeID) {
+    public void setShapeID(int shapeID) {
         ShapeID = shapeID;
     }
 

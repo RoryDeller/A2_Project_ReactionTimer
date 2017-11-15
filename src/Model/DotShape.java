@@ -3,8 +3,9 @@ package Model;
 public class DotShape {
 
     private int shapeID;
-    private String shapeType;
     private int dotOrder;
+    private String shapeType;
+
 
 
     public DotShape(int shapeID) {
@@ -19,6 +20,14 @@ public class DotShape {
         this.shapeID = shapeID;
     }
 
+    public int getDotOrder() {
+        return dotOrder;
+    }
+
+    public void setDotOrder(int dotOrder) {
+        this.dotOrder = dotOrder;
+    }
+
     public String getShapeType() {
         return shapeType;
     }
@@ -27,13 +36,7 @@ public class DotShape {
         this.shapeType = shapeType;
     }
 
-    public int getDotOrder() {
-        return dotOrder;
-    }
 
-    public void setDotOrder(int dotOrder) {
-        this.dotOrder = dotOrder;
-    }
 
     @Override
     public String toString() {
