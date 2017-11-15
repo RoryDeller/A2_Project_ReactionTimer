@@ -1,5 +1,4 @@
-import Model.Album;
-import Model.AlbumService;
+import GUIs.ReactionTester;
 import Model.DatabaseConnection;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,8 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -97,7 +94,7 @@ public class Main extends Application {
         centerPane.getChildren().add(enterMusic);
         centerPane.setPrefWidth(50);
 
-        ImageView iv1 = new ImageView(new Image("Sample.gif"));
+        ImageView iv1 = new ImageView(new Image("Resources/Sample.gif"));
         centerPane.getChildren().add(iv1);
 
         Button centerButton3 = new Button("Statistics");

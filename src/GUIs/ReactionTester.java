@@ -1,26 +1,17 @@
+package GUIs;
+
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.util.Random;
 
 public class ReactionTester {
 
@@ -106,7 +97,7 @@ public class ReactionTester {
             a[i] = rnd.nextDouble();
         }*/
 
-        Image heart = new Image("heart.png");
+        Image heart = new Image("Resources/heart.png");
 
 
         new AnimationTimer() {

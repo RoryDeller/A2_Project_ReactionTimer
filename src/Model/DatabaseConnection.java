@@ -80,6 +80,40 @@ import java.sql.PreparedStatement;
             }
         }
 
+        public ResultSet executeQuery(PreparedStatement statement)
+        {
+            try {
+                return statement.executeQuery();
+            }
+            catch (SQLException exception)
+            {
+                System.out.println("Database query error: " + exception.getMessage());
+                return null;
+            }
+        }
+
+        public int lastNewId()
+        {
+
+            PreparedStatement statement = newStatement("SELECT last_insert_rowid() As 'ID'");
+            try
+            {
+                if (statement != null)
+                {
+                    ResultSet results = executeQuery(statement);
+                    if (results != null)
+                    {
+                        return (results.getInt("ID"));
+                    }
+                }
+            }
+            catch (SQLException exception)
+            {
+                System.out.println("Database new id retrieval error: " + exception.getMessage());
+            }
+            return -1;
+
+        }
     }
 
 

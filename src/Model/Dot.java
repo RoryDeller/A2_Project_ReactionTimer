@@ -3,13 +3,37 @@ package Model;
 public class Dot {
     private int dotID;
     private int dotOrder;
-    private int ShapeID;
+    private int shapeID;
+    private String colour;
+    private double lifeTime;
+    private int size;
+    private int scoreValue;
 
-    public Dot(int dotID, int dotOrder, int shapeID) {
+    public Dot(int dotID, int dotOrder, int shapeID, String colour, double lifeTime, int size, int scoreValue) {
         this.dotID = dotID;
         this.dotOrder = dotOrder;
-        ShapeID = shapeID;
+        this.shapeID = shapeID;
+        this.colour = colour;
+        this.lifeTime = lifeTime;
+        this.size = size;
+        this.scoreValue = scoreValue;
     }
+
+    public String getColour() {return colour;}
+
+    public void setColour(String colour) {this.colour = colour;}
+
+    public double getLifeTime() {return lifeTime;}
+
+    public void setLifeTime(double lifeTime) {this.lifeTime = lifeTime;}
+
+    public int getSize() {return size;}
+
+    public void setSize(int size) {this.size = size;}
+
+    public int getScoreValue() {return scoreValue;}
+
+    public void setScoreValue(int scoreValue) {this.scoreValue = scoreValue;}
 
     public int getDotID() {
         return dotID;
@@ -28,11 +52,11 @@ public class Dot {
     }
 
     public int getShapeID() {
-        return ShapeID;
+        return shapeID;
     }
 
     public void setShapeID(int shapeID) {
-        ShapeID = shapeID;
+        this.shapeID = shapeID;
     }
 
     @Override
@@ -40,7 +64,7 @@ public class Dot {
         return "Dot{" +
                 "dotID=" + dotID +
                 ", dotOrder=" + dotOrder +
-                ", ShapeID='" + ShapeID + '\'' +
+                ", shapeID='" + shapeID + '\'' +
                 '}';
     }
 }

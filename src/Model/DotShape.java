@@ -7,9 +7,10 @@ public class DotShape {
     private String shapeType;
 
 
-
-    public DotShape(int shapeID) {
+    public DotShape(int shapeID, int dotOrder, String shapeType) {
         this.shapeID = shapeID;
+        this.dotOrder = dotOrder;
+        this.shapeType = shapeType;
     }
 
     public int getShapeID() {

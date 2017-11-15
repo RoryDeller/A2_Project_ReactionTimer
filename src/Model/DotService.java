@@ -10,7 +10,7 @@ public class DotService {
 
     public static void selectAll(List<Dot> targetList, DatabaseConnection database){
 
-        PreparedStatement statement = database.newStatement("SELECT dotID, dotOrder, shapeID FROM Dots ORDER BY dotID");
+        PreparedStatement statement = database.newStatement("SELECT dotID, dotOrder, shapeID, colour, lifeTime, size, scoreValue FROM Dots ORDER BY dotID");
 
         try {
             if (statement != null) {
@@ -19,7 +19,9 @@ public class DotService {
 
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Dot(results.getInt("dotID"), results.getInt("dotOrder"), results.getInt("shapeID")));
+                        targetList.add(new Dot(results.getInt("dotID"), results.getInt("dotOrder"),
+                                results.getInt("shapeID"), results.getString("colour"), results.getDouble("lifeTime"),
+                                results.getInt("size"), results.getInt("scoreValue")));
                     }
                 }
             }
@@ -33,7 +35,7 @@ public class DotService {
 
         Dot result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT dotID, dotOrder, shapeID FROM Dots WHERE dotID = ?");
+        PreparedStatement statement = database.newStatement("SELECT dotID, dotOrder, shapeID, colour, lifeTime, size, scoreValue FROM Dots WHERE dotID = ?");
 
         try {
             if (statement != null) {
@@ -42,7 +44,8 @@ public class DotService {
                 ResultSet results = database.runQuery(statement);
 
                 if (results != null) {
-                    result = new Dot(results.getInt("dotID"), results.getInt("dotOrder"), results.getInt("shapeID"));
+                    result = new Dot(results.getInt("dotID"), results.getInt("dotOrder"), results.getInt("shapeID"),
+                            results.getString("colour"), results.getDouble("lifeTime"), results.getInt("size"), results.getInt("scoreValue"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -59,10 +62,13 @@ public class DotService {
 
         try {
             if (existingItem == null) {
-                PreparedStatement statement = database.newStatement("INSERT INTO Dots (dotID, dotOrder, shapeID) VALUES (?, ?, ?))");
+                PreparedStatement statement = database.newStatement("INSERT INTO Dots (dotID, dotOrder, shapeID, colour, lifeTime, size, scoreValue) VALUES (?, ?, ?))");
                 statement.setInt(1, itemToSave.getDotID());
                 statement.setInt(2, itemToSave.getDotOrder());
                 statement.setInt(2, itemToSave.getShapeID());
+                statement.setString(1, itemToSave.getColour());
+                statement.setInt(2, itemToSave.getSize());
+                statement.setInt(2, itemToSave.getScoreValue());
                 database.executeUpdate(statement);
             }
             else {
@@ -70,6 +76,9 @@ public class DotService {
                 statement.setInt(1, itemToSave.getDotID());
                 statement.setInt(2, itemToSave.getDotOrder());
                 statement.setInt(2, itemToSave.getShapeID());
+                statement.setString(1, itemToSave.getColour());
+                statement.setInt(2, itemToSave.getSize());
+                statement.setInt(2, itemToSave.getScoreValue());
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {
