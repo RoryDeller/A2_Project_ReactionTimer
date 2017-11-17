@@ -6,36 +6,24 @@ import javafx.beans.property.SimpleStringProperty;
 public class Option {
 
     private int optionID;
-    private String levelName;
-    private int difficltyRatio;
+    private String option;
+    private int catagory;
 
-    public int getOptionID() {
-        return optionID;
-    }
-
-    public void setOptionID(int optionID) {
+    public Option(int optionID, String option, int catagory) {
         this.optionID = optionID;
+        this.option = option;
+        this.catagory = catagory;
     }
 
-    public String getLevelName() {
-        return levelName;
-    }
+    public int getOptionID() {return optionID;}
 
-    public void setLevelName(String levelName) {
-        this.levelName = levelName;
-    }
+    public void setOptionID(int optionID) {this.optionID = optionID;}
 
-    public int getDifficltyRatio() {
-        return difficltyRatio;
-    }
+    public String getOption() {return option;}
 
-    public void setDifficltyRatio(int difficltyRatio) {
-        this.difficltyRatio = difficltyRatio;
-    }
+    public void setOption(String option) {this.option = option;}
 
-    public Option(int optionID, String levelName, int difficltyRatio) {
-        this.optionID = optionID;
-        this.levelName = levelName;
-        this.difficltyRatio = difficltyRatio;
-    }
+    public int getCatagory() {return catagory;}
+
+    public void setCatagory(int catagory) {this.catagory = catagory;}
 }

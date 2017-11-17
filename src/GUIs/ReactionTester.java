@@ -1,10 +1,12 @@
 package GUIs;
 
+import Controller.ReactionTesterController;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -21,9 +23,6 @@ public class ReactionTester {
     //private int r[], g[], b[];
     //final int BALL_COUNT = 5000;
 
-    double heartPulse = 0;
-
-
     public ReactionTester(Stage stage) {
 
         masterStage = stage;
@@ -35,6 +34,10 @@ public class ReactionTester {
         BorderPane.setAlignment(topPane, Pos.TOP_CENTER);
         topPane.setStyle("-fx-background-color: Red");
         topPane.setMinHeight(100);
+
+        Label timeLabel = new Label();
+        topPane.getChildren().add(timeLabel);
+
         root.setTop(topPane);
 
         HBox bottomPane = new HBox();
@@ -70,7 +73,6 @@ public class ReactionTester {
         circleCanvas.setHeight(500);
         centerPane.getChildren().add(circleCanvas);*/
 
-        final GraphicsContext heartGC = heartCanvas.getGraphicsContext2D();
         //final GraphicsContext circleGC = circleCanvas.getGraphicsContext2D();
 
         /*x = new double[BALL_COUNT];
@@ -97,48 +99,12 @@ public class ReactionTester {
             a[i] = rnd.nextDouble();
         }*/
 
-        Image heart = new Image("Resources/heart.png");
+        ReactionTesterController controller = new ReactionTesterController();
 
+        controller.startHeartAnimation(heartCanvas.getGraphicsContext2D());
 
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
+        controller.startTimerAnimation(timeLabel);
 
-                heartPulse += 0.2;
-
-                double heartScale = 10+10*Math.sin(heartPulse);
-
-                //heartGC.setFill(Color.rgb(0,0,64));
-                //heartGC.fillRect(0,0,499,499);
-
-                heartGC.clearRect(0,0,999,99);
-
-                for (int x = 0; x <= 900; x += 100) {
-                    heartGC.drawImage(heart, 0, 0, 200, 200, x + heartScale, heartScale, 100 - 2 * heartScale, 100 - 2 * heartScale);
-                }
-
-                /*for (int i = 0; i < BALL_COUNT; i++) {
-                    x[i] += dx[i];
-                    y[i] += dy[i];
-                    t[i] += 0.1;
-
-                    double radius = 50 + 30 * Math.sin(t[i]);
-
-                    if (x[i] < radius/2 && dx[i] < radius/2) dx[i] = -dx[i];
-                    if (y[i] < radius/2 && dy[i] < radius/2) dy[i] = -dy[i];
-                    if (x[i] > 500 - radius/2 && dx[i] < 500 - radius/2) dx[i] = -dx[i];
-                    if (y[i] > 500 - radius/2 && dy[i] < 500 - radius/2) dy[i] = -dy[i];
-
-                    circleGC.setFill(Color.rgb(r[i], g[i], b[i], a[i]));
-                    circleGC.fillOval(x[i] - radius/2, y[i] - radius/2, radius, radius);
-
-                }*/
-
-
-
-
-            }
-        }.start();
 
 
         root.setCenter(centerPane);
