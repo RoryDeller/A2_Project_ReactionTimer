@@ -62,7 +62,7 @@ public class ReactionTesterController {
                     long seconds = ((t - milliSecs) / 1000) % 60;
                     long minutes = t / 60000;
 
-                    timeLabel.setText((minutes < 10 ? "0" : "") + Long.toString(minutes) + ":" + (seconds < 10 ? "0" : "") + Long.toString(seconds) + "." + Long.toString(milliSecs));
+                    timeLabel.setText((minutes < 10 ? "0" : "") + Long.toString(minutes) + ":" + (seconds < 10 ? "0" : "") + Long.toString(seconds) + ":" + Long.toString(milliSecs));
 
                 }
 
@@ -85,6 +85,11 @@ public class ReactionTesterController {
                 heartPulse += 0.2;
 
                 double heartScale = 10+10*Math.sin(heartPulse);
+
+
+
+
+
 
                 //heartGC.setFill(Color.rgb(0,0,64));
                 //heartGC.fillRect(0,0,499,499);
