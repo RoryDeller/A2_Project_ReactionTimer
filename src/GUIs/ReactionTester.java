@@ -1,14 +1,14 @@
 package GUIs;
 
-import Controller.ReactionTesterController;
-import javafx.animation.AnimationTimer;
+import Controller.HeartController;
+import Controller.RandomDotController;
+import Controller.TimerController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -58,9 +58,7 @@ public class ReactionTester {
         VBox centerPane = new VBox(3);
         centerPane.setStyle("-fx-background-color: Grey");
 
-
         //ImageView iv1 = new ImageView(new Image("Circle.png"));
-        //Image circleImage = new Image("Circle.png");
 
         Canvas heartCanvas = new Canvas();
         heartCanvas.setWidth(1000);
@@ -68,12 +66,19 @@ public class ReactionTester {
         bottomPane.getChildren().add(heartCanvas);
 
 
-        /*Canvas circleCanvas = new Canvas();
-        circleCanvas.setWidth(500);
-        circleCanvas.setHeight(500);
-        centerPane.getChildren().add(circleCanvas);*/
+        Canvas circleCanvas = new Canvas();
 
-        //final GraphicsContext circleGC = circleCanvas.getGraphicsContext2D();
+        int circleCanvasWidth = 900;
+        int circleCanvasHeight = 600;
+
+        circleCanvas.setWidth(circleCanvasWidth);
+        circleCanvas.setHeight(circleCanvasHeight);
+        centerPane.getChildren().add(circleCanvas);
+
+        GraphicsContext circleGC = circleCanvas.getGraphicsContext2D();
+
+
+
 
         /*x = new double[BALL_COUNT];
         y = new double[BALL_COUNT];
@@ -99,12 +104,13 @@ public class ReactionTester {
             a[i] = rnd.nextDouble();
         }*/
 
-        ReactionTesterController controller = new ReactionTesterController();
+        TimerController timerController = new TimerController();
+        timerController.startTimerAnimation(timeLabel);
 
-        controller.startHeartAnimation(heartCanvas.getGraphicsContext2D());
+        HeartController.startHeartAnimation(heartCanvas.getGraphicsContext2D());
 
-        controller.startTimerAnimation(timeLabel);
-
+        RandomDotController rdController = new RandomDotController(circleGC, circleCanvasWidth, circleCanvasHeight, timerController);
+        rdController.start();
 
 
         root.setCenter(centerPane);
