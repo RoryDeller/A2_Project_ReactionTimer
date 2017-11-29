@@ -3,7 +3,9 @@ package Controller;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.Random;
 
@@ -19,12 +21,14 @@ public class RandomDotController {
     private int currentR;
     private int currentG;
     private int currentB;
-    private int currentRaduis;
+    private int currentRadius;
     private long nextDotTime;
     private long dotExpiryTime;
     private double lifetime = 2;
     private double delay = 3;
     private Image circleImage;
+
+    private long lastMissedTime;
 
     public RandomDotController(GraphicsContext gc, int width, int height, TimerController timerController) {
         this.gc = gc;
@@ -37,6 +41,8 @@ public class RandomDotController {
 
     public void start() {
 
+        final Font missedFont = new Font("Arial", 60);
+
         new AnimationTimer() {
 
             @Override
@@ -48,19 +54,7 @@ public class RandomDotController {
 
                     if (currentTime > nextDotTime) {
 
-                        Random rnd = new Random(currentTime);
-
-                        currentRaduis = rnd.nextInt(50) + 50;
-                        currentX = rnd.nextInt(width - currentRaduis * 2) + currentRaduis;
-                        currentY = rnd.nextInt(height - currentRaduis * 2) + currentRaduis;
-                        currentR = rnd.nextInt(255);
-                        currentG = rnd.nextInt(255);
-                        currentB = rnd.nextInt(255);
-                        dotExpiryTime = currentTime + (long) (lifetime * 1000);
-                        nextDotTime = currentTime + (long) (delay * 1000);
-
-                        delay *= 0.95;
-                        lifetime *= 0.95;
+                        newCircle();
 
                     }
 
@@ -71,7 +65,15 @@ public class RandomDotController {
 
                     if (currentTime < dotExpiryTime) {
                         gc.setFill(Color.rgb(currentR, currentB, currentG));
-                        gc.fillOval(currentX - currentRaduis / 2, currentY - currentRaduis / 2, currentRaduis, currentRaduis);
+                        gc.fillOval(currentX - currentRadius / 2, currentY - currentRadius / 2, currentRadius, currentRadius);
+                    }
+
+                    if (currentTime < lastMissedTime + 1000) {
+
+                        gc.setFill(Color.rgb(255,0,0, ((float) (lastMissedTime + 1000 - currentTime))/1000.0));
+                        gc.setFont(missedFont);
+                        gc.fillText("MISSED!", 100, 100);
+
                     }
 
                 }
@@ -81,5 +83,54 @@ public class RandomDotController {
         }.start();
 
     }
+
+    public void canvasClicked(MouseEvent e) {
+
+        double x = e.getX();
+        double y = e.getY();
+
+        System.out.println("You clicked at " + x + ", " + y);
+
+        if (Math.pow(x - currentX, 2) + Math.pow(y - currentY, 2) <= Math.pow(currentRadius, 2)) {
+            newCircle();
+            System.out.println("You clicked on a circle!!!");
+        }
+        else {
+            System.out.println("You missed!!!");
+            lastMissedTime = System.currentTimeMillis();
+        }
+
+    }
+
+    public void newCircle() {
+
+        long currentTime = System.currentTimeMillis();
+
+        Random rnd = new Random(currentTime);
+
+        boolean inCircle;
+
+        do {
+
+            currentRadius = rnd.nextInt(50) + 50;
+            currentX = rnd.nextInt(width - currentRadius * 2) + currentRadius;
+            currentY = rnd.nextInt(height - currentRadius * 2) + currentRadius;
+
+            inCircle = Math.pow(currentX - width/2, 2)
+                    + Math.pow(currentY - height/2, 2)
+                    < Math.pow(currentRadius + circleImage.getWidth()/2, 2);
+
+        } while (inCircle);
+
+        currentR = rnd.nextInt(255);
+        currentG = rnd.nextInt(255);
+        currentB = rnd.nextInt(255);
+        dotExpiryTime = currentTime + (long) (lifetime * 1000);
+        nextDotTime = currentTime + (long) (delay * 1000);
+
+        delay *= 0.95;
+        lifetime *= 0.95;
+    }
+
 
 }

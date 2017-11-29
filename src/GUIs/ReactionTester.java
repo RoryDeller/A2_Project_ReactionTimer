@@ -75,7 +75,7 @@ public class ReactionTester {
         circleCanvas.setHeight(circleCanvasHeight);
         centerPane.getChildren().add(circleCanvas);
 
-        GraphicsContext circleGC = circleCanvas.getGraphicsContext2D();
+
 
 
 
@@ -109,7 +109,11 @@ public class ReactionTester {
 
         HeartController.startHeartAnimation(heartCanvas.getGraphicsContext2D());
 
+        GraphicsContext circleGC = circleCanvas.getGraphicsContext2D();
         RandomDotController rdController = new RandomDotController(circleGC, circleCanvasWidth, circleCanvasHeight, timerController);
+
+        circleCanvas.setOnMouseClicked((e) -> rdController.canvasClicked(e));
+
         rdController.start();
 
 
