@@ -8,6 +8,8 @@ public class TimerController {
 
     boolean countDown = true;
 
+    public long stopTime = 0;
+
     private long startTime;
 
     public TimerController() {
@@ -28,12 +30,18 @@ public class TimerController {
 
     public boolean getCountdown() { return countDown; }
 
+
+
     public void startTimerAnimation(Label timeLabel) {
 
         new AnimationTimer() {
 
             @Override
             public void handle(long now) {
+
+                if (HeartController.lives <= 0 && stopTime == 0) {
+                    stopTime = getCurrentTime();
+                }
 
                 if (countDown) {
 
@@ -50,6 +58,15 @@ public class TimerController {
                     else {
                         timeLabel.setText("3");
                     }
+
+                }
+                else if (stopTime > 0) {
+
+                    long milliSecs = stopTime % 1000;
+                    long seconds = ((stopTime - milliSecs) / 1000) % 60;
+                    long minutes = stopTime / 60000;
+
+                    timeLabel.setText((minutes < 10 ? "0" : "") + Long.toString(minutes) + ":" + (seconds < 10 ? "0" : "") + Long.toString(seconds) + ":" + Long.toString(milliSecs));
 
                 }
                 else {

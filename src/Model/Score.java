@@ -3,11 +3,11 @@ package Model;
 public class Score {
 
     private int scoreID;
-    private int score;
+    private int totalScore;
 
     public Score(int scoreID, int score) {
         this.scoreID = scoreID;
-        this.score = score;
+        this.totalScore = score;
     }
 
     public int getScoreID() {
@@ -15,7 +15,7 @@ public class Score {
     }
 
     public int getScore() {
-        return score;
+        return totalScore;
     }
 
     public void setScoreID(int scoreID) {
@@ -23,14 +23,14 @@ public class Score {
     }
 
     public void setScore(int score) {
-        this.score = score;
+        this.totalScore = score;
     }
 
     @Override
     public String toString() {
         return "Score{" +
                 "scoreID=" + scoreID +
-                ", score=" + score +
+                ", score=" + totalScore +
                 '}';
     }
 }

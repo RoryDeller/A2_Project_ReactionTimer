@@ -27,6 +27,7 @@ public class RandomDotController {
     private double lifetime = 2;
     private double delay = 3;
     private Image circleImage;
+    private boolean lifeTaken = false;
 
     private long lastMissedTime;
 
@@ -42,30 +43,40 @@ public class RandomDotController {
     public void start() {
 
         final Font missedFont = new Font("Arial", 60);
+        final Font loseFont = new Font("Arial", 100);
 
         new AnimationTimer() {
 
             @Override
             public void handle(long now) {
 
-                if (!timerController.countDown) {
+                gc.setFill(Color.BLACK);
+                gc.fillRect(0, 0, width, height);
+
+                if (HeartController.lives <= 0) {
+
+                    gc.setFill(Color.WHITE);
+                    gc.setFont(missedFont);
+                    gc.fillText("GAME OVER!", 100, 100);
+
+                }
+                else if (!timerController.countDown) {
 
                     long currentTime = System.currentTimeMillis();
 
                     if (currentTime > nextDotTime) {
-
+                        lifeTaken = false;
                         newCircle();
-
                     }
-
-                    gc.setFill(Color.BLACK);
-                    gc.fillRect(0, 0, width, height);
 
                     gc.drawImage(circleImage, width/2 - circleImage.getWidth()/2,height/2 - circleImage.getHeight()/2);
 
                     if (currentTime < dotExpiryTime) {
                         gc.setFill(Color.rgb(currentR, currentB, currentG));
                         gc.fillOval(currentX - currentRadius / 2, currentY - currentRadius / 2, currentRadius, currentRadius);
+                    } else if (!lifeTaken) {
+                        if (nextDotTime != 0) HeartController.lives -= 1;
+                        lifeTaken = true;
                     }
 
                     if (currentTime < lastMissedTime + 1000) {
@@ -98,6 +109,7 @@ public class RandomDotController {
         else {
             System.out.println("You missed!!!");
             lastMissedTime = System.currentTimeMillis();
+            HeartController.lives -= 1;
         }
 
     }
@@ -134,3 +146,4 @@ public class RandomDotController {
 
 
 }
+

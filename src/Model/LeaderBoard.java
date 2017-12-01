@@ -6,10 +6,10 @@ public class LeaderBoard{
     private String position;
     private int scoreID;
 
-    public LeaderBoard(int positionID, String levelName, int difficulty) {
+    public LeaderBoard(int positionID, String position, int scoreID) {
         this.positionID = positionID;
-        this.position = levelName;
-        this.scoreID = difficulty;
+        this.position = position;
+        this.scoreID = scoreID;
     }
 
     public int getPositionID() {
