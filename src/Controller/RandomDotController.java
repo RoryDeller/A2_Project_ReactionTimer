@@ -97,6 +97,9 @@ public class RandomDotController {
 
     public void canvasClicked(MouseEvent e) {
 
+        if (timerController.countDown){
+            return;
+        }
         double x = e.getX();
         double y = e.getY();
 
